@@ -1,2 +1,2 @@
 # simple-music
-用vue搭建的简易音乐播放器
+基于vue的简易音乐播放器
