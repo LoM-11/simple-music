@@ -1,0 +1,299 @@
+
+        /* 引用图标字体 */
+        @font-face {
+            font-family: 'icomoon';
+            src:  url('../fonts/icomoon.eot?142gbg');
+            src:  url('../fonts/icomoon.eot?142gbg#iefix') format('embedded-opentype'),
+                url('../fonts/icomoon.ttf?142gbg') format('truetype'),
+                url('../fonts/icomoon.woff?142gbg') format('woff'),
+                url('../fonts/icomoon.svg?142gbg#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+        /* 应用图标 */
+        i{
+            font-family: 'icomoon';
+            font-style: normal;
+        } 
+        /* 清除浮动 */
+        /* 清除浮动 */
+        .clearfix::before,
+        .clearfix::after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 背景图片模糊 */
+        .bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background-image: url(../img/bg.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(15px);
+        }
+        ::-webkit-scrollbar  
+        {  
+            width: 3px;    
+            background-color: transparent;  
+        } 
+        /*定义滑块 内阴影+圆角*/  
+        ::-webkit-scrollbar-thumb{  
+            height: 20px;
+            border-radius: 10px;  
+            background-color: #c1c1c1;  
+        }  
+
+        #app{
+            margin: 50px auto;
+            width: 800px;
+            height: 500px;
+            border: 1px solid #3B3F44;
+            /* background-color: skyblue; */
+        }
+        /* 搜索框容器 */
+        .searchBar{
+            width: 100%;
+            height: 60px;
+            background-color: #3B3F44;
+        }
+        .searchBar h2{
+            margin: 0 20px;
+            padding: 0;
+            float: left;
+            font-weight: 500;
+            color: #C1C1C1;
+            line-height: 60px;
+        }
+        .searchBar .search{
+            float: right;
+            margin: 12px 20px;
+            width: 222px;
+        }
+        /* 搜索框 */
+        .searchBar .search .searchChild{
+            float: left;
+            width: 160px;
+            padding-left: 15px;
+            height: 33px;
+            outline: none;
+            color: #c1c1c1;
+            background-color: #4a4d52;
+            border: #12131E;
+            border-radius: 20px 0 0 20px;
+        }
+        /* 搜索按钮 */
+        .searchBar .search button{
+            float: left;
+            width: 45px;
+            height: 35px;
+            color: #c1c1c1;
+            background-color: #4a4d52;
+            border: none;
+            outline: none;
+            border-radius: 0 20px 20px 0;
+        }
+        .searchBar .search button:hover{
+            background-color:#3d4044;
+        }
+
+        /* 中间歌曲内容部分 */
+        .music{
+            width: 100%;
+            height: 395px;
+            /* background-color: violet; */
+        }
+        /* 歌曲列表 */
+        .music .mcList{
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            height: 395px;
+            /* background-color: green; */
+            list-style: none;
+            overflow: auto;
+        }
+        .music .mcList .mcItem{
+            color:#F1F3F4;
+            height: 30px;
+            line-height: 28px;
+            font-size: 14px;
+        }
+        .music .mcList .mcItem a{
+            margin: 0 2px 0 5px; 
+            text-decoration: none;
+            color:#dd3737;
+        }
+        .music .mcList .mcItem .mv{
+            float: right;
+        }
+        /* 歌曲图片 */
+        .music .mcImg{
+            position: relative;
+            float: left;
+            width: 398px;
+            height: 395px;
+            border-left: 1px solid #3B3F44;
+            border-right: 1px solid #3B3F44; 
+            overflow: hidden;
+            /* background-color: orange; */
+        }
+
+        /* 黑胶唱片特效 */
+        .music .play-bar{
+            position: absolute;
+            left: 190px;
+            top: -12px;
+            z-index: 2;
+            transform-origin: 12px 12px;
+            transform: rotate(-20deg);
+            transition: 1s;
+        }
+        .music .diss{
+            position: absolute;
+            left: 50%;
+            top: 60px;
+            margin-left: -127px;
+            z-index: 1;
+        }
+        .music .covor{
+            position: absolute;
+            left: 50%;
+            top: 112px;
+            width: 150px;
+            height: 150px;
+            margin-left: -75px;
+        }
+         /* 旋转的动画 */
+        @keyframes Rotate {
+            from {
+                transform: rotate(0);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        /* 旋转的类名 */
+        .autoRotate {
+            animation-name: Rotate;
+            animation-iteration-count: infinite; /* 无限次播放 */
+            animation-play-state: paused;   /* 规定动画已暂停 */
+            animation-timing-function: linear; /* 动画运动速度为匀速 */
+            animation-duration: 10s; /* 5秒完成动画 */
+        }
+        /* 是否正在播放 */
+        .playing .diss,
+        .playing .covor{
+            animation-play-state: running;
+        }
+        .playing .play-bar{
+            transform: rotate(0);
+        }
+
+        /* 歌曲评论 */
+        .music .mcComment{
+            float: left;
+            width: 200px;
+            height: 395px;
+            font-size: 12px;
+            /* background-color: pink; */
+            list-style: none;
+            overflow: auto;
+        }
+        .music .mcComment > p{
+            margin: 5px 0 0 5px;
+            padding: 0;
+            color: #555;
+        }
+        .music .mcComment ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: #C1C1C1;
+        }
+        .music .mcComment ul li{
+            margin-bottom: 10px;
+        }
+        /* 用户头像 */
+        .music .mcComment ul li .touxiang{
+            float: left;
+            width: 60px;
+            height: 100%;
+        }
+        .touxiang img{
+            margin-left: 7px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+        /* 用户评论 */
+        .music .mcComment ul li .comment{
+            float: left;
+            width: 120px;
+        }
+        .comment h4{
+            margin: 0;
+            padding: 0;
+        }
+        .comment p{
+            margin: 0;
+            padding: 5px;
+            font-size: 10px;
+            color: #C1C1C1;
+        }
+
+        /* 下方播放歌曲区域 */
+        .mcStart{
+            width: 100%;
+            height: 45px;
+            background-color: #F1F3F4;
+        }
+        .mcStart audio{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 45px;
+            outline: none;
+        }
+
+        /* MV */
+        .video-wrapper{
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: 7;
+        }
+        .video-wrapper video{
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            margin-left: -400px;
+            width: 800px;
+            height: 500px;
+            z-index: 9;
+            background-color: #000;
+            outline: none;
+        }
+        .video-wrapper .mask{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .2);
+            z-index: 8;
+        }
+
+    

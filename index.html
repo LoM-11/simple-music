@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐播放器</title>
+    
+    <!-- 引用vue -->
+    <script src="./vue/vue.js"></script>
+
+    <!-- 引入axios网络请求库 -->
+    <script src="./axios/axios.js"></script>
+
+    <!-- 引入css样式 -->
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="bg">
+
+    </div>
+    <div id="app">
+        <!-- 搜索框容器 -->
+        <div class="searchBar">
+            <h2>网易云盗版音乐</h2>
+            <div class="search">
+                <input type="text" class="searchChild" placeholder="搜索歌曲、歌手试试吧~" v-model="query" @keyup.enter="searchMusic">
+                <button @click="searchMusic"> <i>  </i></button>
+            </div>
+        </div>
+        <!-- 歌曲 -->
+        <div class="music">
+
+            <!-- 歌曲列表 -->
+            <ul class="mcList">
+                <li class="mcItem" v-for="item in musicList" >
+                    <a href="#" @click="playerMusic(item.id)"> <i>  </i> </a>
+                    <span> {{item.name}} </span>
+                    <a class="mv" v-if="item.mvid != 0" @click="playMV(item.mvid)" href="#"> <i></i> </a>
+                </li>
+            </ul>
+
+            <!-- 歌曲图片位置 mv-->
+            <div class="mcImg" :class="{playing: isPlaying}" v-show="isCenterShow">
+                <img src="./img/mczhizhen.png" class="play-bar">
+                <img src="./img/mcheijiao.png" class="diss autoRotate">
+                <img :src="songImgUrl" class="covor autoRotate">
+            </div>
+
+            <!-- 歌曲评论区 -->
+            <div class="mcComment"  v-show="isCenterShow">
+                <p>热门留言</p>
+                <ul>
+                    <li class="clearfix" v-for="item in songComment">
+                        <div class="touxiang"><img :src="item.user.avatarUrl"></div>
+                        <div class="comment">
+                            <h4> {{item.user.nickname}} </h4>
+                            <p> {{item.content}} </p>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <!-- 播放暂停区 -->
+        <div class="mcStart">
+            <audio ref='audio' @play="play" @pause="pause" :src="songUrl" controls autoplay loop></audio>
+        </div>
+
+        <!-- MV -->
+        <div class="video-wrapper" v-show="isShow">
+            <video ref='video' :src="mvUrl" controls="controls"></video>
+            <div class="mask" @click="back"></div>
+            
+        </div>
+    </div>
+
+    <script src="./JavaScript/index.js"> </script>
+</body>
+</html>
